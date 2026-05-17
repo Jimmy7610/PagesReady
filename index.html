@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PagesReady — Kan mitt projekt ligga på GitHub Pages?</title>
+  <meta
+    name="description"
+    content="PagesReady hjälper dig att snabbt avgöra om ditt projekt kan hostas på GitHub Pages. Svara på enkla frågor och få ett tydligt svar."
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ---- App-skal: tvåkolumnslayout ---- -->
+  <main class="app-shell">
+
+    <!-- ---- Vänster kolumn: quiz ---- -->
+    <section class="quiz-panel">
+
+      <!-- Header -->
+      <header class="header">
+        <h1 class="header__title">PagesReady</h1>
+        <p class="header__subtitle">Kan mitt projekt ligga på GitHub Pages?</p>
+      </header>
+
+      <!-- Introduktionstext -->
+      <p id="intro" class="intro">
+        Svara på några korta frågor om ditt projekt så ger vi dig en enkel
+        vägledning om GitHub Pages passar eller inte.
+      </p>
+
+      <!-- Info: Vad är GitHub Pages? -->
+      <details class="pages-info">
+        <summary class="pages-info__toggle">Vad är GitHub Pages?</summary>
+        <div class="pages-info__body">
+          <p>GitHub Pages är ett gratis sätt att visa en webbplats på internet direkt från ett GitHub-repo. Du behöver inte hyra en egen server för enkla webbsidor.</p>
+
+          <h3 class="pages-info__section-title">Tänk så här</h3>
+          <p>GitHub Pages är som en digital anslagstavla. Du lägger upp färdiga webbfiler, till exempel HTML, CSS, JavaScript och bilder. GitHub visar sedan filerna som en riktig webbsida.</p>
+
+          <h3 class="pages-info__section-title">GitHub Pages passar bra för</h3>
+          <ul class="pages-info__list">
+            <li>Portfolios</li>
+            <li>Enkla webbsidor</li>
+            <li>Dokumentation</li>
+            <li>Små HTML/CSS/JS-spel</li>
+            <li>Demos och prototyper</li>
+            <li>Statiska exports från t.ex. Vite</li>
+          </ul>
+
+          <h3 class="pages-info__section-title">GitHub Pages passar sämre för</h3>
+          <ul class="pages-info__list pages-info__list--warning">
+            <li>Appar med egen backend</li>
+            <li>Databaser med serverlogik</li>
+            <li>Hemliga API-nycklar</li>
+            <li>Inloggning som kräver säker serverkod</li>
+            <li>Python, Node, PHP eller C# på servern</li>
+            <li>Lokala program som ffmpeg, Piper eller Ollama</li>
+          </ul>
+
+          <div class="pages-info__summary">
+            <strong>Kort sagt:</strong> GitHub Pages visar färdiga webbsidor. GitHub Pages kör inte en egen backend åt dig.
+          </div>
+        </div>
+      </details>
+
+      <!-- Snabbregel -->
+      <div class="quick-rule" aria-label="Snabbregel">
+        <h2 class="quick-rule__title">Snabbregel</h2>
+        <div class="quick-rule__grid">
+          <div class="quick-rule__item">
+            <span class="quick-rule__label">✅ Bara färdiga webbfiler<span class="quick-rule__hint">HTML, CSS, JavaScript och bilder</span></span>
+            <span class="quick-rule__result quick-rule__result--ok">→ GitHub Pages kan passa</span>
+          </div>
+          <div class="quick-rule__item">
+            <span class="quick-rule__label">⚠️ Behöver server eller säker data<span class="quick-rule__hint">Backend, databas, hemliga nycklar eller lokala program</span></span>
+            <span class="quick-rule__result quick-rule__result--warn">→ Välj troligen en annan lösning</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div id="progress" class="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <p id="progress-label" class="progress__label">Fråga 1 av 8</p>
+        <div class="progress__track">
+          <div id="progress-fill" class="progress__fill"></div>
+        </div>
+      </div>
+
+      <!-- Frågekort -->
+      <section id="question-card" class="card" aria-label="Fråga">
+        <p id="question-text" class="card__question"></p>
+        <div class="answers" role="group" aria-label="Svarsalternativ">
+          <button class="btn-answer" onclick="answer('ja')">Ja</button>
+          <button class="btn-answer" onclick="answer('nej')">Nej</button>
+          <button class="btn-answer" onclick="answer('vetinte')">Vet inte</button>
+        </div>
+      </section>
+
+      <!-- Resultatkort (dolt som standard) -->
+      <section id="result-card" class="card result hidden" aria-label="Resultat" aria-live="polite">
+        <h2 id="result-title" class="result__title"></h2>
+        <p id="result-explanation" class="result__explanation"></p>
+        <div id="result-extra"></div>
+        <div class="actions">
+          <button id="btn-restart" class="btn-action btn-restart">Börja om</button>
+          <button id="btn-copy" class="btn-action btn-copy">Kopiera sammanfattning</button>
+        </div>
+      </section>
+
+      <!-- Disclaimer -->
+      <p class="disclaimer">
+        Detta är en förenklad vägledning, inte en komplett teknisk analys.
+      </p>
+
+      <p class="app-version">PagesReady v1.1 · Lokal förhandsversion</p>
+
+    </section>
+
+    <!-- ---- Höger kolumn: ordlista ---- -->
+    <aside class="glossary-panel" aria-label="Ordlista">
+      <h2 class="glossary__title">Ordlista</h2>
+      <div class="glossary__list">
+
+        <details class="glossary-item">
+          <summary class="glossary-item__summary">
+            <span class="glossary-item__term">Statisk webbplats</span>
+            <span class="glossary-item__short">En webbplats som bara består av färdiga filer (HTML, CSS, JS, bilder) och inte behöver en server som bearbetar data.</span>
+          </summary>
+          <div class="glossary-item__long">
+            <p>En statisk webbplats är en sida som redan är färdig när den skickas till webbläsaren. Den består oftast av filer som HTML, CSS, JavaScript och bilder. Webbläsaren läser filerna och visar sidan direkt.</p>
+            <p>Det betyder att sidan inte behöver en egen server som räknar ut saker i bakgrunden varje gång någon besöker den. Därför passar statiska webbplatser ofta bra på GitHub Pages.</p>
+            <p>Exempel: en portfolio, en informationssida, en enkel dokumentationssida eller ett litet spel byggt med HTML, CSS och JavaScript.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item">
+          <summary class="glossary-item__summary">
+            <span class="glossary-item__term">Backend</span>
+            <span class="glossary-item__short">Den del av ett system som körs på en server, till exempel kod i Node.js, Python eller PHP som hanterar logik och data.</span>
+          </summary>
+          <div class="glossary-item__long">
+            <p>Backend är den del av en app som körs på en server, alltså inte direkt i besökarens webbläsare. Den kan till exempel hantera inloggning, spara data, prata med en databas eller skydda hemliga nycklar.</p>
+            <p>GitHub Pages kan visa färdiga webbsidor, men det kan inte köra en egen backend åt dig. Om ditt projekt behöver backend behöver du oftast en annan lösning, till exempel Vercel, Render, Railway, Supabase eller en egen server.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item">
+          <summary class="glossary-item__summary">
+            <span class="glossary-item__term">Databas</span>
+            <span class="glossary-item__short">Ett system för att spara, hämta och hantera data, till exempel MySQL, PostgreSQL, Supabase eller Firebase.</span>
+          </summary>
+          <div class="glossary-item__long">
+            <p>En databas är en plats där en app kan spara och hämta information. Det kan vara användare, kommentarer, bilder, produkter, poäng, bokningar eller annan data.</p>
+            <p>GitHub Pages har ingen egen databas. En statisk sida kan ibland läsa data från en extern tjänst, men om appen behöver spara data säkert eller hantera användardata behöver du oftast en databaslösning som Supabase, Firebase eller en egen backend.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item">
+          <summary class="glossary-item__summary">
+            <span class="glossary-item__term">API-nyckel</span>
+            <span class="glossary-item__short">En hemlig kod som ger tillgång till en tjänst. Hemliga nycklar ska aldrig vara synliga i webbläsaren.</span>
+          </summary>
+          <div class="glossary-item__long">
+            <p>En API-nyckel är som ett lösenord som ger tillgång till en tjänst. Den kan till exempel användas för att prata med en AI-tjänst, en betaltjänst, en karttjänst eller en databas.</p>
+            <p>Om en API-nyckel är hemlig ska den aldrig ligga öppet i kod som körs i webbläsaren. På GitHub Pages kan användaren i princip se frontend-koden. Därför behöver hemliga nycklar oftast hanteras via en backend eller serverlösning.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item">
+          <summary class="glossary-item__summary">
+            <span class="glossary-item__term">Build</span>
+            <span class="glossary-item__short">Att omvandla källkod till färdiga filer som kan visas i en webbläsare, ofta till en mapp som heter <em>dist</em> eller <em>build</em>.</span>
+          </summary>
+          <div class="glossary-item__long">
+            <p>Build betyder att projektets källkod görs om till färdiga filer som webbläsaren kan använda. Verktyg som Vite, React, Vue eller Svelte kan till exempel skapa en mapp som heter <code>dist</code> eller <code>build</code>.</p>
+            <p>GitHub Pages kan ofta visa resultatet av en build, men det kör inte själva appservern. Om din build skapar vanliga HTML-, CSS- och JavaScript-filer kan projektet ofta fungera på GitHub Pages.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item">
+          <summary class="glossary-item__summary">
+            <span class="glossary-item__term">Deploy</span>
+            <span class="glossary-item__short">Att publicera en webbplats så att den blir tillgänglig på internet, till exempel via GitHub Pages eller Netlify.</span>
+          </summary>
+          <div class="glossary-item__long">
+            <p>Deploy betyder att du publicerar ditt projekt så att andra kan besöka det på internet. När du deployar flyttas eller kopplas dina filer till en plats där webbläsare kan nå dem.</p>
+            <p>GitHub Pages är ett sätt att deploya statiska webbsidor. Andra vanliga alternativ är Netlify, Vercel och Cloudflare Pages. Vilken lösning som passar beror på om projektet bara behöver visa filer eller om det också behöver backend.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item">
+          <summary class="glossary-item__summary">
+            <span class="glossary-item__term">Lokal körning</span>
+            <span class="glossary-item__short">Att köra ett program på sin egen dator istället för på en server på internet.</span>
+          </summary>
+          <div class="glossary-item__long">
+            <p>Lokal körning betyder att projektet körs på din egen dator i stället för på internet. Det kan till exempel vara en app som använder Python, ffmpeg, Piper, Ollama, Stable Diffusion eller andra program som finns installerade lokalt.</p>
+            <p>GitHub Pages kan inte köra sådana lokala program åt besökaren. Om projektet kräver lokala program behöver det oftast köras på din dator, på en egen server eller byggas om till en annan lösning.</p>
+          </div>
+        </details>
+
+      </div>
+    </aside>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
