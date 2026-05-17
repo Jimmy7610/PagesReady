@@ -4,7 +4,8 @@
 
 Verktyget ställer 8 enkla frågor om projektet och ger sedan en tydlig rekommendation med förklaring och nästa steg.
 
-> Just nu är PagesReady ett lokalt verktyg som körs direkt i webbläsaren. Publicering på GitHub Pages kan göras senare.
+> PagesReady kan köras direkt i webbläsaren och finns även publicerat via GitHub Pages:
+> https://jimmy7610.github.io/PagesReady/
 
 ---
 
@@ -72,11 +73,11 @@ Projektet kräver backend, databas, hemliga nycklar eller lokala program. Altern
 
 ---
 
-## Öppna lokalt
+## Kom igång
 
-Ingen installation behövs. Öppna bara `index.html` i din webbläsare:
+Ingen installation behövs. Besök live-versionen eller öppna `index.html` lokalt:
 
-1. Ladda ner eller klona mappen.
+1. Ladda ner eller klona repot.
 2. Dubbelklicka på `index.html`.
 3. Klart — verktyget körs direkt i webbläsaren.
 
@@ -101,6 +102,8 @@ pagesready/
 ├── style.css           All styling
 ├── script.js           Frågelogik och beslutsmotor
 ├── README.md           Den här filen
+├── LICENSE             MIT-licens
+├── .gitignore          Ignorerade filer
 └── docs/
     └── beslutslogik.md Förklaring av beslutslogiken
 ```
@@ -119,7 +122,7 @@ pagesready/
 
 ## Framtida idéer
 
-- [ ] Publicera på GitHub Pages.
+- [ ] Förbättra GitHub Pages-versionen med delbar resultatsida.
 - [ ] Möjlighet att dela resultat via URL.
 - [ ] Fler förklarande texter kopplade till varje fråga.
 - [ ] Visuell sammanfattning av alla svar efter quizet.
@@ -128,6 +131,14 @@ pagesready/
 
 ---
 
+## Länkar
+
+- **Live-demo:** https://jimmy7610.github.io/PagesReady/
+- **GitHub-repo:** https://github.com/Jimmy7610/PagesReady
+- **Beslutslogik:** [docs/beslutslogik.md](docs/beslutslogik.md)
+
+---
+
 ## Licens
 
-Öppen källkod. Fritt att använda, ändra och dela.
+MIT License — se [LICENSE](LICENSE) för fullständig text.

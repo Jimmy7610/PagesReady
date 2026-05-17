@@ -14,16 +14,16 @@ Baserat på svaren beräknas en **riskpoäng**. Ju högre riskpoäng, desto mer 
 
 ## Riskbedömning per fråga
 
-| # | Fråga | Svar som ökar risk | Vikt | Risknivå |
-|---|-------|-------------------|------|----------|
-| 1 | Statiska filer? | Nej | 2 | Medel |
-| 2 | Behöver server? | Ja | 3 | Hög |
-| 3 | Behöver databas? | Ja | 3 | Hög |
-| 4 | Hemliga API-nycklar? | Ja | 3 | Hög |
-| 5 | Inloggning/användardata? | Ja | 2 | Medel |
-| 6 | Lokala program? | Ja | 3 | Hög |
-| 7 | Ramverk (React etc.)? | — | 0 | Ingen direkt |
-| 8 | Kan byggas statiskt? | — | 0 | Ingen direkt |
+| Fråga | Svar som ökar risk | Vikt | Risknivå |
+|---|---|---:|---|
+| 1. Statiska filer? | Nej | 2 | Medel |
+| 2. Behöver server? | Ja | 3 | Hög |
+| 3. Behöver databas? | Ja | 3 | Hög |
+| 4. Hemliga API-nycklar? | Ja | 3 | Hög |
+| 5. Inloggning/användardata? | Ja | 2 | Medel |
+| 6. Lokala program? | Ja | 3 | Hög |
+| 7. Ramverk, till exempel React/Vite/Vue/Svelte/Next? | — | 0 | Ingen direkt |
+| 8. Kan byggas statiskt? | — | 0 | Ingen direkt |
 
 ### Så beräknas poängen
 
@@ -92,7 +92,7 @@ I dessa fall rekommenderas en manuell bedömning utöver verktygets resultat.
 Dessa kan justeras i `script.js` (markerade med `INSTÄLLNING`):
 
 | Inställning | Värde | Beskrivning |
-|------------|-------|-------------|
-| `LOW_THRESHOLD` | 2 | Under denna gräns → Resultat A |
-| `HIGH_THRESHOLD` | 5 | Över denna gräns → Resultat C |
+|---|---:|---|
+| LOW_THRESHOLD | 2 | Under denna gräns → Resultat A |
+| HIGH_THRESHOLD | 5 | Över denna gräns → Resultat C |
 | Vet inte-faktor | 0.5 | Andel av vikten som adderas vid osäkerhet |
